@@ -1,14 +1,18 @@
 spring:
   cloud:
     aws:
+      region:
+        static: ap-south-1
       credentials:
         access-key: AKIAVW6SP6Y52CBXAYIJ
         secret-key: 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
-      region:
-        static: ap-south-1
       stack:
         auto: false
 
 application:
   bucket:
     name: atharsbucket
+
+sqs:
+  queue:
+    end-point: https://sqs.ap-south-1.amazonaws.com/392894084667/testingQueue

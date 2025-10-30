@@ -23,6 +23,7 @@ public class StorageService {
     private String bucketName;
 
     private final S3Client s3Client;
+
     @Autowired
     public StorageService(S3Client s3Client) {
         this.s3Client = s3Client;
@@ -37,6 +38,7 @@ public class StorageService {
         return fileName;
     }
 
+
     public String generateObjectUrl(String key) {
         GetObjectPresignRequest presignRequest = GetObjectPresignRequest.builder()
                 .signatureDuration(Duration.ofHours(1))
@@ -45,7 +47,6 @@ public class StorageService {
 
         S3Presigner preSigner = S3Presigner.builder()
                 .region(s3Client.serviceClientConfiguration().region())
-                .credentialsProvider(s3Client.serviceClientConfiguration().credentialsProvider())
                 .build();
 
         String presignedUrl = preSigner.presignGetObject(presignRequest).url().toString();
